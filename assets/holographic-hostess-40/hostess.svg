@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 280" role="img" aria-label="40 holographic hostess Iris">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e2e8f0"/>
+      <stop offset="1" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14b8a6"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="80" cy="268" rx="42" ry="8" fill="#14b8a6" opacity="0.28"/>
+  <path d="M80 92 C58 108 50 150 54 188 L62 188 C64 150 70 118 80 108 C90 118 96 150 98 188 L106 188 C110 150 102 108 80 92Z" fill="url(#glow)" opacity="0.35"/>
+  <path d="M68 118 C60 150 62 198 58 236 L74 236 C76 198 76 154 80 132 C84 154 84 198 86 236 L102 236 C98 198 100 150 92 118Z" fill="#0b1220" stroke="url(#glow)" stroke-width="1.4"/>
+  <path d="M80 70 C62 78 52 108 56 132 L80 126 L104 132 C108 108 98 78 80 70Z" fill="#14b8a6" opacity="0.55"/>
+  <path d="M80 70 C98 78 108 108 104 132 L92 128 C94 108 90 88 80 82 C70 88 66 108 68 128 L56 132 C52 108 62 78 80 70Z" fill="#a855f7" opacity="0.35"/>
+  <rect x="74" y="128" width="12" height="22" rx="3" fill="#0b1220" stroke="#14b8a6"/>
+  <circle cx="80" cy="52" r="20" fill="url(#skin)" stroke="url(#glow)" stroke-width="1.6" filter="url(#soft)"/>
+  <path d="M62 50 Q80 20 98 50 Q96 34 80 30 Q64 34 62 50Z" fill="#0b1220"/>
+  <circle cx="73" cy="52" r="2.1" fill="#14b8a6"/>
+  <circle cx="87" cy="52" r="2.1" fill="#a855f7"/>
+  <path d="M74 60 Q80 64 86 60" fill="none" stroke="#14b8a6" stroke-width="1.1"/>
+  <circle cx="80" cy="96" r="11" fill="#05070c" stroke="url(#glow)" stroke-width="1.5"/>
+  <text x="80" y="100" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#14b8a6">40</text>
+  <path d="M56 132 C40 148 34 176 38 204" fill="none" stroke="url(#glow)" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M104 132 C120 148 126 176 122 204" fill="none" stroke="url(#glow)" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

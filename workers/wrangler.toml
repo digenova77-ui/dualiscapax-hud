@@ -1,0 +1,9 @@
+name = "iris-origin-join-hud"
+main = "iris-bridge.js"
+compatibility_date = "2026-09-24"
+
+# Bind this worker on dualiscapax.ai ONLY for:
+#   /holographic-core/v2*
+#   /assets/holographic-hostess-40*
+#   /iris/status
+# Do not route / through this worker.
