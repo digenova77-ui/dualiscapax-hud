@@ -1,0 +1,21 @@
+{
+  "observed": "2026-10-07T02:03:45.745Z",
+  "page": "https://dualiscapax.ai/playground/",
+  "audit": "https://dualiscapax.ai/playground/audit",
+  "statusClaimed": "live",
+  "trail": [],
+  "count": 0,
+  "ipfs": {
+    "gateway": "ipfs.dualiscapax.ai",
+    "cname": "white-characteristic-ptarmigan-364.mypinata.cloud",
+    "claimed": "connected",
+    "pinned": false
+  },
+  "nullRoutes": [
+    "r2-sandbox",
+    "stripe-fulfill"
+  ],
+  "dns": "active",
+  "note": "The page says the trail is IPFS-anchored. The trail is empty. This file is an observation. It is not a pin.",
+  "sha256": "795c1207e017be78b0afd9d6af9acdec5a000b9b819937825997132ad88b50a5"
+}
