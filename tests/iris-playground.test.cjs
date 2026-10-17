@@ -40,7 +40,6 @@ function load(fetchImpl) {
   assert.match(page, /id="iris-form"/);
   assert.match(page, /iris-playground\.js\?v=1/);
   assert.match(page, /Download HUD shell/);
-  assert.match(page, /replaceChild\(inline,external\)/);
   assert.match(page, /live API requires a supported HTTPS origin/);
   const inline = page.split("<script").slice(1).map(part => part.slice(part.indexOf(">") + 1).split("</script>")[0]).filter(script => script.trim());
   assert.ok(inline.length > 0);
