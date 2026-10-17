@@ -156,6 +156,7 @@
   }
 
   async function readFile(file) {
+    localDocument = null;
     if (!file) throw new Error("NO_FILE");
     if (file.size > MAX_FILE_BYTES) throw new Error("FILE_TOO_LARGE");
     if (!ALLOWED.test(String(file.name || ""))) throw new Error("UNSUPPORTED_FILE_TYPE");
