@@ -1,0 +1,54 @@
+name: Diamond Review Checks
+
+on:
+  push:
+    branches:
+      - fix/iris-hud-ux-2026-10-17
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "diamond/**"
+      - "workers/iris-bridge.js"
+      - "holographic-core/v2/index.html"
+      - "README.md"
+      - "tests/test_diamond_review_static.py"
+      - ".github/workflows/diamond-review-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  static-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run Diamond Review regression tests
+        run: python -m unittest discover -s tests -p "test_diamond_review_static.py" -v
+
+      - name: Extract inline browser script
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path("diamond/index.html").read_text(encoding="utf-8")
+          scripts = re.findall(r"<script>(.*?)</script>", html, flags=re.DOTALL)
+          if len(scripts) != 1:
+              raise SystemExit(f"Expected one inline script, found {len(scripts)}")
+          Path("/tmp/diamond-review-inline.js").write_text(scripts[0], encoding="utf-8")
+          PY
+
+      - name: Check browser JavaScript syntax
+        run: node --check /tmp/diamond-review-inline.js

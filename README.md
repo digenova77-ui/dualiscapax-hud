@@ -2,7 +2,7 @@
 
 DualisCapax spatial HUD — new layer, not the landing site.
 
-## DCLM-RTE-V2.0.4 — permanent download pack
+## Iris Diamond Review — local evidence console\n\n- Console source: [`diamond/index.html`](diamond/index.html)\n- Proposed isolated route: `/diamond` (Iris allowlist change is on this feature branch only)\n- Includes six coverage axes, three-ring verdicts, observation provenance fields, exact missing-primitive reporting, repeat-pass SHA-256 linkage, and JSON export.\n- No preloaded evidence, live sensor access, credentials, actuation, production deployment, or DNS changes. A “complete” result is bounded to the declared scope.\n\n## DCLM-RTE-V2.0.4 — permanent download pack
 
 This repo is the isolated layer. It does **not** patch `dualiscapax-landing` apex (`/`).
 
