@@ -10,6 +10,9 @@ const ALLOW = {
   "/holographic-core/v2": [HUD_RAW + "/holographic-core/v2/index.html", "text/html; charset=utf-8"],
   "/holographic-core/v2/": [HUD_RAW + "/holographic-core/v2/index.html", "text/html; charset=utf-8"],
   "/holographic-core/v2/index.html": [HUD_RAW + "/holographic-core/v2/index.html", "text/html; charset=utf-8"],
+  "/diamond": [HUD_RAW + "/diamond/index.html", "text/html; charset=utf-8"],
+  "/diamond/": [HUD_RAW + "/diamond/index.html", "text/html; charset=utf-8"],
+  "/diamond/index.html": [HUD_RAW + "/diamond/index.html", "text/html; charset=utf-8"],
   "/assets/holographic-hostess-40/hostess.svg": [HUD_RAW + "/assets/holographic-hostess-40/hostess.svg", "image/svg+xml; charset=utf-8"]
 };
 
