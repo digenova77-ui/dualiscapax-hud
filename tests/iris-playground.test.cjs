@@ -61,7 +61,7 @@ function load(fetchImpl) {
   assert.equal(payload.api_version, "2");
   assert.deepEqual(payload.capabilities.have, ["text"]);
   assert.equal(good.hud.snapshot().answerEngineVerified, true);
-  assert.equal(good.elements["iris-messages"].children.length, 2);
+  assert.equal(good.elements["iris-messages"].children.length, 3);
 
   const localCalls = [];
   const local = load(async (url, options) => {
@@ -83,7 +83,7 @@ function load(fetchImpl) {
   assert.equal(failed.ok, false);
   assert.equal(failed.status, 503);
   assert.match(httpFailure.elements["iris-status"].textContent, /HTTP 503/);
-  assert.doesNotMatch(httpFailure.elements["iris-messages"].children[1].children[1].textContent, /private server detail/);
+  assert.doesNotMatch(httpFailure.elements["iris-messages"].children[2].children[1].textContent, /private server detail/);
 
   const networkFailure = load(async () => { throw new Error("internal network detail"); });
   const disconnected = await networkFailure.hud.send("question");
