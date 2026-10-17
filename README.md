@@ -25,7 +25,7 @@ The isolated HUD now includes a text-first Iris panel in `holographic-core/v2/in
 - **Local files:** `.txt`, `.md`, `.markdown`, `.csv`, `.tsv`, `.json`, and `.log`; maximum 256 KiB and 20,000 characters passed as context. Content stays in memory until the user sends a question, is not put in localStorage or transcript telemetry, and credential-like assignments are refused.
 - **No search fallback:** if the configured API cannot return an answer, the HUD reports the failure; it does not forward document text to public search.
 - **Download:** the button exports the HTML page shell, not a self-contained offline AI. API requests require a supported HTTPS origin; browser voice/camera features depend on secure-context support.
-- **Validation:** Node 20 test workflow is isolated from deployment. Latest passing run: [39006631862](https://github.com/digenova77-ui/dualiscapax-hud/actions/runs/39006631862), 1 test file passed, 0 failed. Browser-level behavior and live API/CORS remain unverified.
+- **Validation:** Node 20 test workflow is isolated from deployment. Latest passing run: [39006687014](https://github.com/digenova77-ui/dualiscapax-hud/actions/runs/39006687014), 2 test files passed, 0 failed. Browser-level behavior and live API/CORS remain unverified.
 
 This is a workbench change only. No Cloudflare worker, DNS, cache, or production route was changed. Cutover remains approval-gated.
 
