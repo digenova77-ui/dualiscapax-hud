@@ -163,6 +163,7 @@
     if (typeof file.text !== "function") throw new Error("TEXT_READER_UNAVAILABLE");
     var text = String(await file.text() || "");
     if (text.indexOf("\u0000") !== -1) throw new Error("BINARY_FILE");
+    if (SECRET_LIKE.test(text)) throw new Error("SECRET_LIKE_CONTENT");
     localDocument = {
       name: String(file.name || "document"),
       text: text.slice(0, MAX_FILE_CHARS),
