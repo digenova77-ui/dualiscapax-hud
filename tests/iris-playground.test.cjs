@@ -39,7 +39,7 @@ function load(fetchImpl) {
   const page = fs.readFileSync("holographic-core/v2/index.html", "utf8");
   assert.match(page, /id="iris-form"/);
   assert.match(page, /iris-playground\.js\?v=1/);
-  const inline = Array.from(page.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)).map(match => match[1]).filter(script => script.trim());
+  const inline = page.split("<script").slice(1).map(part => part.slice(part.indexOf(">") + 1).split("</script>")[0]).filter(script => script.trim());
   assert.ok(inline.length > 0);
   assert.doesNotThrow(() => new Function(inline[inline.length - 1]));
   const bridge = fs.readFileSync("workers/iris-bridge.js", "utf8");
