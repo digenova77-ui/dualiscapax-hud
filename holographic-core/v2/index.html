@@ -50,8 +50,16 @@ pre{background:#05070c;border:1px solid var(--line);border-radius:10px;padding:1
 footer{margin-top:28px;color:var(--muted);font-size:12px}
 
 .iris-panel{margin:0 0 24px;padding:18px;background:linear-gradient(150deg,rgba(11,18,32,.96),rgba(5,7,12,.98));}
-.iris-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.iris-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.iris-title{display:flex;align-items:center;gap:12px}
 .iris-head h2{margin:0;color:var(--teal);font-size:1rem;letter-spacing:.08em;text-transform:uppercase}
+.iris-orb{position:relative;display:block;width:42px;height:42px;flex:0 0 42px;border:1px solid rgba(20,184,166,.7);border-radius:50%;background:radial-gradient(circle at 30% 24%,#d1fae5 0 3%,#14b8a6 11%,#12313c 38%,#080c16 72%);box-shadow:inset -7px -7px 16px rgba(0,0,0,.65),0 0 22px rgba(20,184,166,.24)}
+.iris-orb:before{content:"";position:absolute;inset:-6px;border:1px solid rgba(168,85,247,.65);border-radius:50%;transform:rotateX(65deg);animation:irisOrbit 5s linear infinite}
+.iris-orb:after{content:"";position:absolute;left:48%;top:45%;width:4px;height:4px;border-radius:50%;background:#e9d5ff;box-shadow:0 0 10px #a855f7}
+@keyframes irisOrbit{to{transform:rotateX(65deg) rotateZ(360deg)}}
+@keyframes irisGlow{50%{box-shadow:inset -7px -7px 16px rgba(0,0,0,.65),0 0 30px rgba(168,85,247,.58)}} 
+.iris-panel[data-state="working"] .iris-orb{animation:irisGlow 1.2s ease-in-out infinite}
+.iris-panel[data-state="speaking"] .iris-orb{animation:irisGlow .6s ease-in-out infinite}
 .iris-status{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font:600 11px/1.4 ui-monospace,monospace}
 .iris-status:before{content:"";width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#64748b}
 .iris-status[data-state="ready"]:before{background:var(--teal)}
@@ -81,12 +89,12 @@ footer{margin-top:28px;color:var(--muted);font-size:12px}
 .iris-hidden-file{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .iris-compose button:focus-visible,.iris-controls button:focus-visible,.iris-compose input:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 @media(max-width:520px){.iris-panel{padding:13px}.iris-compose{align-items:stretch}.iris-compose button{min-width:64px;padding-inline:10px}.iris-controls button{flex:1 1 42%}.iris-messages{max-height:240px}}
-@media(prefers-reduced-motion:reduce){.ticker span,.pulse{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.ticker span,.pulse,.iris-orb,.iris-orb:before{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="field"></div>
-<div class="ticker"><span>SYSTEM ACTIVE: DCLM-RTE-V2.0.4 // IRIS AI EDGE ROUTING // 40-HOLOGRAPHIC HOSTESS ANCHORED AT RTE PRIMARY SUPPORT LEFT FOOT // LEGS QUARANTINED // ZERO OVERWRITES PERMITTED // PATH /holographic-core/v2 // HUD LAYER ONLY</span></div>
+<div class="ticker"><span>HUD LAYER LOADED: DCLM-RTE-V2.0.4 // IRIS PLAYGROUND ISOLATED // API STATUS SHOWN IN PLAYGROUND // CAMERA PREVIEW ONLY // VISUAL UNDERSTANDING NOT CONNECTED // ZERO APEX OVERWRITES // PATH /holographic-core/v2</span></div>
 <main class="wrap">
 <p class="kicker">DualisCapax · Unity 0.40 holographic · isolated HUD</p>
 <h1>DCLM-RTE-V2.0.4</h1>
@@ -96,9 +104,9 @@ footer{margin-top:28px;color:var(--muted);font-size:12px}
 <a class="btn ghost" href="https://raw.githubusercontent.com/digenova77-ui/dualiscapax-hud/main/holographic-core/v2/index.html">Raw GitHub file</a>
 <a class="btn ghost" href="https://github.com/digenova77-ui/dualiscapax-hud">HUD repo (not the lander)</a>
 </div>
-<section class="card iris-panel" aria-labelledby="iris-title">
+<section class="card iris-panel" id="iris-console" aria-labelledby="iris-title">
   <div class="iris-head">
-    <h2 id="iris-title">Iris playground</h2>
+    <div class="iris-title"><span class="iris-orb" aria-hidden="true"></span><h2 id="iris-title">Iris playground</h2></div>
     <p class="iris-status" id="iris-status" data-state="ready" role="status">Not connected · first request has not been tested</p>
   </div>
   <p class="iris-copy">Text requests use the configured API only after you press Send. Local text files remain in this tab until you ask a question. Camera is preview-only; visual understanding is not connected. Voice input depends on browser support and permission.</p>
