@@ -92,6 +92,9 @@ function load(fetchImpl) {
 
   await assert.rejects(local.hud.readFile({ name: "scan.pdf", size: 100, text: async () => "x" }), /UNSUPPORTED_FILE_TYPE/);
   await assert.rejects(local.hud.readFile({ name: "large.txt", size: 256 * 1024 + 1, text: async () => "x" }), /FILE_TOO_LARGE/);
+  const credentialLike = ["api", "_key", "=", "placeholder-credential-value"].join("");
+  await assert.rejects(local.hud.readFile({ name: "notes.txt", size: credentialLike.length, text: async () => credentialLike }), /SECRET_LIKE_CONTENT/);
+  assert.equal(local.hud.snapshot().hasLocalDocument, false, "rejected replacement must clear the previous document context");
   local.hud.clear();
   assert.equal(local.hud.snapshot().hasLocalDocument, false);
   assert.equal(local.hud.snapshot().answerEngineVerified, false);
