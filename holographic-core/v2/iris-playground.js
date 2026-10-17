@@ -9,6 +9,7 @@
   var MAX_FILE_BYTES = 256 * 1024;
   var MAX_FILE_CHARS = 20000;
   var ALLOWED = /\.(txt|md|markdown|csv|tsv|json|log)$/i;
+  var SECRET_LIKE = /(?:api[_-]?key|access[_-]?token|secret[_-]?key|private[_-]?key|password)\\s*[:=]\\s*["']?[\\w-]{8,}/i;
   var busy = false;
   var answerEngineVerified = false;
   var localDocument = null;
@@ -16,6 +17,7 @@
   var recognition = null;
 
   function byId(id) { return d.getElementById(id); }
+  var panelEl = byId("iris-console");
   var statusEl = byId("iris-status");
   var messagesEl = byId("iris-messages");
   var form = byId("iris-form");
@@ -33,6 +35,7 @@
     if (!statusEl) return;
     statusEl.textContent = String(message || "");
     statusEl.dataset.state = state || "ready";
+    if (panelEl) panelEl.dataset.state = state || "ready";
   }
 
   function addMessage(role, text) {
@@ -174,6 +177,11 @@
   function clear() {
     localDocument = null;
     answerEngineVerified = false;
+    if (recognition) {
+      try { recognition.stop(); } catch (error) {}
+      recognition = null;
+    }
+    if (talkButton) talkButton.setAttribute("aria-pressed", "false");
     if (input) input.value = "";
     if (fileInput) fileInput.value = "";
     if (messagesEl) messagesEl.textContent = "";
@@ -241,6 +249,7 @@
         if (transcript && input) {
           input.value = transcript;
           send(transcript);
+          input.value = "";
         }
       };
       recognition.onerror = function () {
@@ -282,6 +291,7 @@
     readFile(file).catch(function (error) {
       localDocument = null;
       var message = error && error.message === "FILE_TOO_LARGE" ? "Text files are limited to 256 KB." :
+        error && error.message === "SECRET_LIKE_CONTENT" ? "This file looks like it contains a credential-like value. Redact it before selecting the file." :
         "Choose a text, Markdown, CSV, TSV, JSON, or log file. Image/PDF analysis is not connected.";
       setStatus(message, "error");
       addMessage("system", message);
@@ -290,6 +300,7 @@
   if (clearButton) clearButton.addEventListener("click", clear);
   w.addEventListener("beforeunload", function () {
     stopCamera();
+    if (recognition) { try { recognition.stop(); } catch (error) {} recognition = null; }
     if (w.speechSynthesis) {
       try { w.speechSynthesis.cancel(); } catch (error) {}
     }
