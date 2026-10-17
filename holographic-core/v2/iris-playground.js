@@ -9,7 +9,7 @@
   var MAX_FILE_BYTES = 256 * 1024;
   var MAX_FILE_CHARS = 20000;
   var ALLOWED = /\.(txt|md|markdown|csv|tsv|json|log)$/i;
-  var SECRET_LIKE = /(?:api[_-]?key|access[_-]?token|secret[_-]?key|private[_-]?key|password)\\s*[:=]\\s*["']?[\\w-]{8,}/i;
+  var SECRET_LIKE = /(?:api[_-]?key|access[_-]?token|secret[_-]?key|private[_-]?key|password)\s*[:=]\s*["']?[\w-]{8,}/i;
   var busy = false;
   var answerEngineVerified = false;
   var localDocument = null;
