@@ -10,6 +10,7 @@
   var MAX_FILE_CHARS = 20000;
   var ALLOWED = /\.(txt|md|markdown|csv|tsv|json|log)$/i;
   var busy = false;
+  var answerEngineVerified = false;
   var localDocument = null;
   var cameraStream = null;
   var recognition = null;
@@ -135,6 +136,7 @@
         return { ok: false, reason: "EMPTY_RESPONSE", status: response.status };
       }
       addMessage("iris", answer);
+      answerEngineVerified = true;
       setStatus("Response received · text engine only", "ready");
       speak(answer);
       return { ok: true, answer: answer, status: response.status };
@@ -171,6 +173,7 @@
 
   function clear() {
     localDocument = null;
+    answerEngineVerified = false;
     if (input) input.value = "";
     if (fileInput) fileInput.value = "";
     if (messagesEl) messagesEl.textContent = "";
@@ -300,7 +303,7 @@
       documentCharacters: localDocument ? localDocument.characters : 0,
       documentTruncated: localDocument ? localDocument.truncated : false,
       cameraPreview: !!cameraStream,
-      answerEngineVerified: false
+      answerEngineVerified: answerEngineVerified
     };
   }
 
