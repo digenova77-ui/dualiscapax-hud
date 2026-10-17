@@ -39,6 +39,9 @@ function load(fetchImpl) {
   const page = fs.readFileSync("holographic-core/v2/index.html", "utf8");
   assert.match(page, /id="iris-form"/);
   assert.match(page, /iris-playground\.js\?v=1/);
+  assert.match(page, /Download HUD bundle/);
+  assert.match(page, /replaceChild\(inline,external\)/);
+  assert.match(page, /API still requires a supported HTTPS origin/);
   const inline = page.split("<script").slice(1).map(part => part.slice(part.indexOf(">") + 1).split("</script>")[0]).filter(script => script.trim());
   assert.ok(inline.length > 0);
   assert.doesNotThrow(() => new Function(inline[inline.length - 1]));
