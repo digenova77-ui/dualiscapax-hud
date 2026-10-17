@@ -36,6 +36,15 @@ function load(fetchImpl) {
 }
 
 (async function () {
+  const page = fs.readFileSync("holographic-core/v2/index.html", "utf8");
+  assert.match(page, /id="iris-form"/);
+  assert.match(page, /iris-playground\.js\?v=1/);
+  const inline = Array.from(page.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)).map(match => match[1]).filter(script => script.trim());
+  assert.ok(inline.length > 0);
+  assert.doesNotThrow(() => new Function(inline[inline.length - 1]));
+  const bridge = fs.readFileSync("workers/iris-bridge.js", "utf8");
+  assert.match(bridge, /iris-playground\.js/);
+
   const calls = [];
   const good = load(async (url, options) => {
     calls.push({ url, options });
@@ -86,5 +95,5 @@ function load(fetchImpl) {
   local.hud.clear();
   assert.equal(local.hud.snapshot().hasLocalDocument, false);
   assert.equal(local.hud.snapshot().answerEngineVerified, false);
-  console.log("Iris HUD tests: 22 assertions passed");
+  console.log("Iris HUD and source checks passed");
 })().catch((error) => { console.error(error); process.exitCode = 1; });
