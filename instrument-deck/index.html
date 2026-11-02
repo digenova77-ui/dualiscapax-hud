@@ -43,7 +43,7 @@ footer{margin-top:24px;color:var(--muted);font-size:.82rem}
 <section class="panel">
 <h2>Four gates — still closed</h2>
 <div class="grid">
-<article class="gate"><span class="state">CLOSED · NOT RATIFIED</span><strong>Compiled policy ID: null</strong><p>The candidate has no approved compiled policy identifier. A test fixture is not a production policy ratification.</p></article>
+<article class="gate"><span class="state">DEFAULT CLOSED · EXTERNAL PROOF REQUIRED</span><strong>Compiled default policy ID: null</strong><p>The code permits a non-draft policy ID only through the owner-root-signed authority manifest. No real deployment manifest and signature have been independently verified for this review. A test fixture is not owner ratification.</p></article>
 <article class="gate"><span class="state">CLOSED · EXECUTION REFUSED</span><strong><code>TRINITY_EXECUTION_EVIDENCE_REQUIRED</code></strong><p>Settlement enqueue refuses without Trinity execution evidence. The evaluator does not itself create an outbox item.</p></article>
 <article class="gate"><span class="state">CLOSED · NOT METERED</span><strong>Physical joules: unmeasured</strong><p>No physical energy measurement is connected to this paid path. Typed values and estimates are not meter readings.</p></article>
 <article class="gate"><span class="state">CLOSED · NOT APPLIED</span><strong>90 / 9 / 1 allocation: unapplied</strong><p>The allocation is not applied by the payment journal or verified settlement path. No distribution is claimed.</p></article>
@@ -59,7 +59,7 @@ footer{margin-top:24px;color:var(--muted);font-size:.82rem}
 <section class="panel">
 <h2>Operating boundary</h2>
 <dl>
-<dt>Authorization</dt><dd>Trinity remains the sole authorization gate.</dd>
+<dt>Authorization</dt><dd>Trinity remains the sole authorization gate. The compiled policy default is null; any runtime policy approval must come from a valid owner-root-signed manifest with current independent seat appointments.</dd>
 <dt>Payment</dt><dd>No paid run is enabled by this display. Stripe and BitPay sandbox verification remain separate work.</dd>
 <dt>Recovery</dt><dd>PR #110 describes recovery of an existing authorized settlement only; it does not create fresh authorization or new payment intent.</dd>
 <dt>Energy / value</dt><dd>Joule (metered): unavailable. eFuse (valued): not established here. Ledger (accounted): no completed settlement claimed.</dd>
