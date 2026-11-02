@@ -115,3 +115,41 @@ The inspected candidate code reads these environment variables:
 The current candidate's `src/dccp/meter.ts` explicitly returns `measured: false` even for a syntactically valid typed watt value; `pageMeter()` returns no reading. `src/dccp/joule.ts` keeps physical measured watts null and distinguishes a Landauer theoretical floor from a meter reading. The eFuse/economy code still marks the till closed and does not write joules, watts, or a live allocation. Therefore the missing physical meter is an actual external integration/evidence gap, not a CI failure. No IoT broker is assumed or required as a single point of failure; a future adapter must supply authenticated, independently verifiable readings and must not turn typed input into measured energy.
 
 The 90/9/1 allocation remains doctrine/code metadata, not an applied ledger distribution. No payment or settlement code inspected in this pass reads it as a live split. Keep both gates closed until metered energy and a durable, auditable allocation path exist.
+
+
+## Physical meter and economic ledger acceptance boundary — candidate 1d7d3df13f18b9d4af51cc09c7eeae5762261c8d
+
+A second source-level pass inspected `meter.ts`, `economy.ts`, `economy.test.ts`, `efuse.ts`, `efuse.test.ts`, and the current `POST /api/v2/protocol` handler at the exact machine candidate above.
+
+### What exists
+
+- The meter parser recognizes a narrow watt-shaped record and role-labelled watt lines. Parsing syntax does not authenticate a physical instrument.
+- `pageMeter()`, `meterFromWatts()`, and `readMeter()` all return `measured: false` and `watts: null` in this candidate.
+- The protocol POST handler explicitly refuses caller-supplied `meter`, `sensor`, `kelvin`, `temperature`, `place`, and land/coordinate fields. It does not expose a physical-meter intake route.
+- The economy module can grade and pack a `Post`; its tests exercise a manually constructed `Meter { measured: true, watts: 5 }` object as a unit-test fixture. That fixture is not a production sensor path or proof that a physical meter exists.
+- The eFuse module validates that 90 + 9 + 1 = 100 and names three seats. Its tests explicitly assert that the seats are not sold or moved. `move('Merit')` refuses because the till is closed.
+- The economy posting/book path explicitly returns `settles: false`, `minted: false`, `sold: false`, and `till: 'closed'`. No transfer/distribution is performed by those functions.
+
+### Required meter adapter acceptance criteria (not implemented or certified)
+
+1. **Instrument identity:** provisioned device identity and key/certificate, revocable independently of the application.
+2. **Freshness and replay defence:** monotonic sequence/counter, device timestamp with bounded skew, unique sample ID, and durable replay rejection.
+3. **Cryptographic authenticity:** signed canonical sample containing device ID, channel/role, watts, voltage/current if available, units, sample interval, sequence, timestamp, and calibration reference. Verify signature against a separately pinned device key.
+4. **Physical plausibility:** reject non-finite/negative values, unsupported roles, duplicate channels, stale readings, impossible intervals, and unit ambiguity. Do not sum samples or infer energy without an explicit integration interval and method.
+5. **Independent calibration:** retain calibration certificate/version, measurement uncertainty, and last calibration date; readings outside permitted uncertainty remain untrusted.
+6. **Durable evidence:** persist the exact signed sample digest and verification outcome in an append-only audit record before any economic calculation. A broker or transport may relay data but cannot be the authority or sole durable record.
+7. **Fail-closed semantics:** loss of sensor, signature, clock, calibration, database, or replay state yields no measured joules and no economic posting.
+
+A future adapter may use a broker or direct device connection, but the broker is transport only. No IoT broker is assumed, required as a single point of failure, or currently connected.
+
+### Required 90/9/1 ledger acceptance criteria (not implemented)
+
+1. Freeze the meaning of each share, its beneficial owner/beneficiary class, denominator, rounding rule, and effective timestamp in an owner-approved policy.
+2. Bind each distribution to one immutable, paid-and-settled source event and a verified physical-energy record where the policy requires it.
+3. Compute all three allocations deterministically in integer minor units; define dust/remainder handling so the total exactly equals the source amount.
+4. Require Trinity authorization for the exact distribution action and payload digest; do not infer authority from CI, a policy fixture, or a payment notification.
+5. Write a double-entry, append-only ledger transaction with idempotency key, source event, allocation version, beneficiaries, amounts, currency, and evidence digests.
+6. Prove replay safety, partial failure recovery, reversal/refund behavior, and reconciliation. A retry must never create a second distribution.
+7. Keep the till closed until independent tests establish conservation (90 + 9 + 1), exact sum of debits and credits, authority binding, and durable recovery.
+
+**No meter adapter or 90/9/1 distribution code was added in this pass.** These are explicit acceptance criteria, not a claim that the external instrument, policy approvals, beneficiary accounts, or ledger are already available. Do not activate either path based on the current unit-test fixtures.
