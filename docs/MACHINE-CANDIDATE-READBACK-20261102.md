@@ -69,3 +69,12 @@ This record does not authorize merging PR #109 or #110, changing the default bra
 ---
 **Evidence date:** 2 November 2026.  
 **Grade:** PROVEN for the named GitHub refs, compare results, PR states, and CI conclusions; DESIGN/UNKNOWN for anything not established by those records.
+
+
+## Governing-definition reconciliation — later 2 November 2026 read
+
+The governing definition was subsequently updated at blob `f110f7fca5ef1bdabd2300d5307862191a3797d8` on `docs/hud-possibility-20261102`. Its P9 and §5 now explicitly name this candidate SHA, state that both `8a06982787aefa1edcc89ef9edef160211c5853f` and `992034381a15c133829e12ffcbca008230695000` are ancestors (neither is the tip), and preserve the four closed-gate read-backs. This is consistent with this supplemental record.
+
+The governing definition also records two successful machine check-runs on the candidate SHA: [41390620048](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/actions/runs/41390620048) and [41390616859](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/actions/runs/41390616859). The latter's job steps were independently inspected: focused machine/fail-closed tests, focused test-source typecheck, changed-source lint, PostgreSQL-backed app, second app instance sharing PostgreSQL, authorization invariant, real HTTP machine path, production frontend bundle, and cleanup all succeeded. No test counts are asserted here.
+
+The definition's exact remaining refusals are retained: compiled policy ID is null; production paid quote/run return `PAYMENT_SANDBOX_DISABLED`; `enqueuePaymentSettlement` returns `TRINITY_EXECUTION_EVIDENCE_REQUIRED` and its only caller in the tree is its test; `evaluateSettlementTrinity` does not itself create an outbox item or mutate payment state. The HUD must keep the orbits at `NO TASKS BOUND` until a real manifest is retrievable, and show the four holes before any paid-run depiction.
