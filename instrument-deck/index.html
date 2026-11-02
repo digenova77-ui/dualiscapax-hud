@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>DualisCapax — Machine Instrument Deck</title>
+<style>
+:root{color-scheme:dark;--bg:#070b12;--panel:#101827;--line:#26364a;--text:#e8eef7;--muted:#9aabc0;--teal:#55d6c2;--amber:#f2c36b;--red:#ff8b8b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 10% 0%,#10283a 0,transparent 60%),var(--bg);color:var(--text);font:15px/1.55 system-ui,sans-serif}
+main{max-width:1080px;margin:auto;padding:32px 20px 64px}.eyebrow{font:700 11px ui-monospace,monospace;letter-spacing:.16em;color:var(--teal);text-transform:uppercase}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.55rem 0}.lede{color:var(--muted);max-width:760px}
+.panel{background:linear-gradient(145deg,#111d2c,#0c1420);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}
+h2{font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.gate{border:1px solid var(--line);border-radius:12px;padding:16px;background:#0b1320}
+.state{display:inline-block;font:700 10px ui-monospace,monospace;letter-spacing:.08em;border:1px solid var(--amber);color:var(--amber);border-radius:999px;padding:4px 8px;margin-bottom:10px}
+.gate p{color:var(--muted);margin:.5rem 0 0}.gate strong{display:block;font-size:1.05rem;overflow-wrap:anywhere}
+code{font:12px ui-monospace,monospace;color:#b9a7ff;overflow-wrap:anywhere}
+dl{display:grid;grid-template-columns:minmax(130px,190px) 1fr;gap:8px 16px;margin:0}dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+a{color:var(--teal)}.note{color:var(--muted);font-size:.88rem}.empty{font:800 clamp(1.2rem,3vw,2rem) ui-monospace,monospace;letter-spacing:.08em;color:var(--amber);text-align:center;padding:22px;border:1px dashed #80683d;border-radius:12px}
+footer{margin-top:24px;color:var(--muted);font-size:.82rem}
+</style>
+</head>
+<body><main>
+<p class="eyebrow">DualisCapax · read-only instrument surface · evidence snapshot 02 Nov 2026</p>
+<h1>Machine instrument deck</h1>
+<p class="lede">A truthful read-back of the nominated machine candidate and its remaining gates. This page does not execute work, authorize payment, issue value, measure energy, or change machine state.</p>
+
+<section class="panel">
+<h2>Machine candidate</h2>
+<dl>
+<dt>Repository</dt><dd><a href="https://github.com/digenova77-ui/scarlet-xenon-lion-dove">digenova77-ui/scarlet-xenon-lion-dove</a></dd>
+<dt>Candidate branch</dt><dd><code>settlement-resume-recovery-20261102</code></dd>
+<dt>Exact candidate SHA</dt><dd><code>2c8653151b80d5b15a0a22ea1a1c90dc76f9d0c9</code></dd>
+<dt>Pull request</dt><dd><a href="https://github.com/digenova77-ui/scarlet-xenon-lion-dove/pull/110">#110 — draft, open, unmerged</a></dd>
+<dt>Parent candidate</dt><dd><a href="https://github.com/digenova77-ui/scarlet-xenon-lion-dove/pull/109">PR #109</a> at <code>e2143825998fb692289d1cb3a7007774f3e60c28</code></dd>
+<dt>Machine CI evidence</dt><dd>Runs <code>41390620048</code> and <code>41390616859</code> reported successful for the candidate. This is repository CI evidence, not external provider certification.</dd>
+</dl>
+<p class="note">No PR merge, default-branch change, deployment, DNS edit, secret change, or live provider call is represented here.</p>
+</section>
+
+<section class="panel">
+<h2>Four gates — still closed</h2>
+<div class="grid">
+<article class="gate"><span class="state">CLOSED · NOT RATIFIED</span><strong>Compiled policy ID: null</strong><p>The candidate has no approved compiled policy identifier. A test fixture is not a production policy ratification.</p></article>
+<article class="gate"><span class="state">CLOSED · EXECUTION REFUSED</span><strong><code>TRINITY_EXECUTION_EVIDENCE_REQUIRED</code></strong><p>Settlement enqueue refuses without Trinity execution evidence. The evaluator does not itself create an outbox item.</p></article>
+<article class="gate"><span class="state">CLOSED · NOT METERED</span><strong>Physical joules: unmeasured</strong><p>No physical energy measurement is connected to this paid path. Typed values and estimates are not meter readings.</p></article>
+<article class="gate"><span class="state">CLOSED · NOT APPLIED</span><strong>90 / 9 / 1 allocation: unapplied</strong><p>The allocation is not applied by the payment journal or verified settlement path. No distribution is claimed.</p></article>
+</div>
+</section>
+
+<section class="panel">
+<h2>Swarm instruments</h2>
+<div class="empty">NO TASKS BOUND</div>
+<p class="note">No retrievable, gradeable task manifest is currently wired to these orbits. No progress, throughput, density, or completion animation is fabricated. Bind a real manifest before showing activity.</p>
+</section>
+
+<section class="panel">
+<h2>Operating boundary</h2>
+<dl>
+<dt>Authorization</dt><dd>Trinity remains the sole authorization gate.</dd>
+<dt>Payment</dt><dd>No paid run is enabled by this display. Stripe and BitPay sandbox verification remain separate work.</dd>
+<dt>Recovery</dt><dd>PR #110 describes recovery of an existing authorized settlement only; it does not create fresh authorization or new payment intent.</dd>
+<dt>Energy / value</dt><dd>Joule (metered): unavailable. eFuse (valued): not established here. Ledger (accounted): no completed settlement claimed.</dd>
+<dt>Mutation</dt><dd>Read-only. No buttons, write endpoints, credentials, or control-plane actions.</dd>
+</dl>
+</section>
+
+<section class="panel">
+<h2>Evidence sources</h2>
+<ul>
+<li><a href="https://github.com/digenova77-ui/dualiscapax-hud/blob/docs/hud-possibility-20261102/docs/HUD-POSSIBILITY-DEFINITION.md">HUD Possibility Definition</a> — governing graded specification.</li>
+<li><a href="https://github.com/digenova77-ui/dualiscapax-hud/blob/docs/hud-possibility-20261102/docs/MACHINE-CANDIDATE-READBACK-20261102.md">Machine Candidate Read-back</a> — candidate ancestry, CI and closed-gate evidence.</li>
+<li><a href="https://github.com/digenova77-ui/scarlet-xenon-lion-dove/pull/110">Machine PR #110</a> — draft recovery candidate.</li>
+<li><a href="https://github.com/digenova77-ui/scarlet-xenon-lion-dove/pull/109">Machine PR #109</a> — parent Stage 3B candidate.</li>
+</ul>
+<p class="note">Snapshot labels must be refreshed against repository evidence before reuse after this date. This page is a read-back, not a live connection.</p>
+</section>
+<footer>TRUTH_OR_NOTHING · NO_FORCE · HOST_SAFE · CLEANUP_FIRST<br>Read-only instrument deck. No production authority or operational control.</footer>
+</main></body></html>
