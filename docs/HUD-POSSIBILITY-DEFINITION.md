@@ -143,16 +143,16 @@ The HUD repository at `caeb3774` contains `holographic-core/v2/index.html`, `dia
 
 ### P9. The machine record the HUD may show
 
-- **Day:** The HUD shows the machine as it is: a sandbox stack that can quote and can refuse, and that has not authorized a paid run.
-- **Rests on:** `integration/machine-stage1-20261101` @ `992034381a15c133829e12ffcbca008230695000`.
-  - `APPROVED_POLICY_ID` is `null` (`src/dccp/govern.ts` line 23).
-  - `evaluateMachineTrinity` has no route caller.
-  - `enqueuePaymentSettlement` returns `TRINITY_EXECUTION_EVIDENCE_REQUIRED`.
-  - Local `npm test` on that head: 731 passed, 0 failed. `typecheck:tests` passed.
-  - GitHub: [Verify machine unit](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/actions/runs/41378521298) success; [Verify current baseline](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/actions/runs/41378521324) success. Both on that SHA.
-- **Grade:** PROVEN for those facts. The brief's other record (`integration/machine-sandbox-20261101` @ `ac158845`, "956/956 + 126/126") was **not** what the remote returned. The live sandbox tip is `8a06982787aefa1edcc89ef9edef160211c5853f` and it is not contained in the stage-1 head. Those test counts are UNKNOWN to this seat.
-- **Fuel:** metered in iterations on the demo schedule, not in joules. Valued by a route constant, not by an owner-ratified tariff. Accounted only up to a journal that refuses to schedule settlement. A HUD caption that says otherwise is false.
-- **Class:** exists now as a closed record. Showing it is buildable next, after one SHA is chosen (see the ordering). It is not a live economy.
+- **Day:** The HUD names one candidate commit and shows the gates that are still shut. It does not show a paid success.
+- **Rests on:** `settlement-resume-recovery-20261102` @ `2c8653151b80d5b15a0a22ea1a1c90dc76f9d0c9`, open draft [PR #110](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/pull/110). This seat re-read the commit. `8a06982787aefa1edcc89ef9edef160211c5853f` and `992034381a15c133829e12ffcbca008230695000` are both ancestors. Neither is the tip. The supplemental note is `docs/MACHINE-CANDIDATE-READBACK-20261102.md`. It nominates. It does not merge.
+- **What this commit still refuses, read here:**
+  - `APPROVED_POLICY_ID` is the compiled `null` (`govern.ts` line 26).
+  - `paidQuote` and `paidRun` return `PAYMENT_SANDBOX_DISABLED` when `NODE_ENV` is production (`machine.ts` lines 199 and 222).
+  - `enqueuePaymentSettlement` returns `TRINITY_EXECUTION_EVIDENCE_REQUIRED` (`payment-journal.ts` line 689). The only caller in the tree is its test.
+  - `evaluateSettlementTrinity` does not create an outbox item or mutate payment state. Its own header says so.
+- **Grade:** PROVEN for those lines and for the ancestry. GitHub `machine` check-runs on this SHA succeeded: [41390620048](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/actions/runs/41390620048) and [41390616859](https://github.com/digenova77-ui/scarlet-xenon-lion-dove/actions/runs/41390616859). This seat did not re-run them and did not count the tests. The brief's `ac158845` and "956/956 + 126/126" stay UNKNOWN. PR #110 is draft and unmerged.
+- **Fuel:** not a measured joule. Not an applied 90/9/1 split. The ledger on this commit can describe settlement states; the scheduling function this seat found still refuses, and the pull request is not on the default branch.
+- **Class:** exists now as the nominated candidate. A HUD read-back may name the SHA and the four holes. It may not call the machine live.
 
 ### P10. Identity before any mutating view
 
@@ -193,7 +193,7 @@ The HUD repository at `caeb3774` contains `holographic-core/v2/index.html`, `dia
 | Class | Entries | Which |
 |---|---|---|
 | Exists now | 8 | P1 as a page only; P2 as a partial strip; P3 as an empty orbit; P4 as geometry; P8 as a prohibition; P9 as a closed machine record; P10 as a split identity; P12 as a prohibition. |
-| Buildable next | 4 | Finish the pure-logic strip (P2). Plumb real binds or keep the empty label (P3). Show the closed machine record after one SHA is chosen (P9). One session for mutating acts (P10). |
+| Buildable next | 4 | Finish the pure-logic strip only if that wave may be edited (P2). Plumb real binds or keep the empty label (P3). Show `2c86531` as holes, not as a paid success (P9). One session for mutating acts (P10). |
 | Open research | 4 | The 1655 boot (P1 at the limit). A view generated from any retrievable thing (P5). Log, watch, notify, stream (P6). A live joule inside the worth read-back (P7). |
 
 P11 is not counted as buildable. The export waits on a founder word. P13 is not counted as a HUD possibility.
@@ -204,7 +204,7 @@ P11 is not counted as buildable. The export waits on a founder word. P13 is not 
 
 Kidney before flow. Witness and accounting before any surface that could be mistaken for them.
 
-1. **Choose one machine SHA.** Reason: the HUD cannot display "the machine" while `9920343` and `8a06982` are different lines. Until one is named, the instrument has two needles. This is a decision, not a drawing.
+1. **The machine SHA is named, and it is not merged.** `settlement-resume-recovery-20261102` @ `2c8653151b80d5b15a0a22ea1a1c90dc76f9d0c9`. It contains both earlier heads. Draft PR #110. The HUD may read this SHA back with the gates in P9. It may not treat the pull request as landed.
 2. **Keep the swarm honest, then connect it.** Reason: `world.ts` already refuses to invent tasks. The next code may attach a real manifest or leave `NO TASKS BOUND`. It may not animate progress. Depends on step 1 only if the manifest comes from the machine; a manifest from anywhere else still has to be retrievable and graded.
 3. **Put the closed gates on the instrument deck as read-backs.** Reason: policy id null, enqueue refused, joule unmeasured, 90/9/1 not applied. The deck shows those four holes in normal type. No surface that implies a paid run comes before this. Depends on step 1.
 4. **One session for anything that mutates.** Reason: the browser ceremony and the server passkey are not the same seat. A bind, a key, or a unit requires the server session. Depends on step 1 for the machine, and does not depend on the picture.
@@ -274,7 +274,7 @@ Questions for the founder or the record. Not filled here.
 
 1. What file is the five-layer storyboard menu, if it exists outside the commits read above?
 2. Is `dccp-world` @ `4bb3ba21` the export cut, or does that wave stay application-only?
-3. Which machine head may the HUD read: `9920343`, `8a06982`, or neither until they are one line?
+3. **Answered.** The nominated candidate is `2c8653151b80d5b15a0a22ea1a1c90dc76f9d0c9`. `8a06982` and `9920343` are inside it. The pull request is still a draft.
 4. Does the pure-logic vote authorize an edit to `world.ts`, or only this definition?
 5. Where is the valuation ruling filed, so `$1.27B/yr` can be re-read before any HUD shows it?
 6. PASS 3 and PASS 6: which files, and is the screening word in or not? This lane did not look.
